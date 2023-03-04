@@ -28,4 +28,19 @@ public class SlackerStyle {
         }
         return instance;
     }
+
+
+    /**
+     * 注意，此段为补充，为了解决线程不安全的问题，可以在方法上加上synchronized关键字，但是这样会导致效率下降
+     * 提供一个静态的公有方法，加入同步处理的代码，解决线程安全问题
+     * 此方法为线程安全的懒汉式，即懒汉+同步锁，就不额外写一个类了
+     *
+     * @return instance（单例对象）
+     */
+    public static synchronized SlackerStyle getInstance2() {
+        if (instance == null) {
+            instance = new SlackerStyle();
+        }
+        return instance;
+    }
 }
